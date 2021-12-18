@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="depertments">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="university" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="item" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="xsd:string">
+                            <xsd:attribute name="language" type="lanType"/>
+                            <xsd:attribute name="second" type="secondType" use="required" />
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="period" type="periodType"/>
+                    <xsd:element name="quota">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="xsd:integer">
+                            <xsd:attribute name="spec" type="specType" use="required" />
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="field" type="fieldType" />
+                    <xsd:element name="last_min_score">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="scoreType">
+                            <xsd:attribute name="last_min_order" type="orderType" use="required" />
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="grant" type="grantType" />
+                  </xsd:sequence>
+                  <xsd:attribute name="faculty" type="facultyType" use="required" />
+                  <xsd:attribute name="id" type="idLength" use="required" />
+                </xsd:complexType>               
+              </xsd:element>              
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string" use="required" />              
+            <xsd:attribute name="uType" type="uniType" use="required" />
+          </xsd:complexType>               
+        </xsd:element>             
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:simpleType name="idLength">
+   <xsd:restriction base="xsd:decimal">
+    <xsd:pattern value="[0-9]{9}"/>
+   </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="grantType">
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value=""/>
+    <xsd:enumeration value="25"/>
+    <xsd:enumeration value="50"/>
+    <xsd:enumeration value="100"/>
+   </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="specType">
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value=""/>
+    <xsd:enumeration value="1"/>
+    <xsd:enumeration value="2"/>
+    <xsd:enumeration value="3"/>
+    <xsd:enumeration value="4"/>
+   </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="fieldType">
+   <xsd:restriction base="xsd:string">
+    <xsd:pattern value="SAY|EA|SÖZ|DİL"/>
+   </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="secondType">
+   <xsd:restriction base="xsd:string">
+    <xsd:pattern value="No|Yes"/>
+   </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="facultyType">
+   <xsd:restriction base="xsd:string">
+    <xsd:pattern value="Mühendislik Fakültesi|Mühendislik ve Mimarlık Fakültesi"/>
+   </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="uniType">
+   <xsd:restriction base="xsd:string">
+    <xsd:pattern value="Devlet|Vakıf"/>
+   </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="periodType">
+   <xsd:restriction base="xsd:integer">
+    <xsd:enumeration value="4"/>
+   </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="lanType">
+   <xsd:restriction base="xsd:string">
+    <xsd:enumeration value=""/>
+    <xsd:enumeration value="en"/>
+   </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="scoreType">
+   <xsd:restriction base="xsd:string">
+    <xsd:minLength value="0"/>
+   </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="orderType">
+   <xsd:restriction base="xsd:string">
+   <xsd:minLength value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>   
